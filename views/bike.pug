@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {
+        "bike_brand": "KTM",
+        "bike_quantity": "10 items",
+        "bike_cost": 100000
+      },
+      {
+        "bike_brand": "Enfield",
+        "bike_quantity": "9 items",
+        "bike_cost": 1500000
+      },
+      {
+        "bike_brand": "Yamaha",
+        "bike_quantity": "8 items",
+        "bike_cost": 200000
+      },                   
+    ]
+  div(class= "container-fluid")
+    div(class = "row")
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) Brand: #{item.bike_brand}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Quantity: #{item.bike_quantity}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.bike_cost}
+        br
+        br
+        
+  script.
+    function buy(itemNum){
+      alert(`You purchased item ${itemNum+1}`)
+    }
