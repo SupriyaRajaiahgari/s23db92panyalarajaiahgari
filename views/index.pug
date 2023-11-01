@@ -4,4 +4,14 @@ block content
   h1= title
   p Welcome to #{title}
   p Panyala Rajaiahgari Supriya 
-  button(type="button", class="btn btn-secondary") Press Me
+  button(type="button", class="btn btn-warning", onclick="goFaster()") Press Me
+  div#faster Increase the speed
+  script.
+    var mph = 20;
+    var change = 1;
+
+    function goFaster() {
+      mph += change;
+      change += 1;
+      document.getElementById("faster").textContent = "MPH " + mph + " with change " + change;
+    }
