@@ -1,7 +1,21 @@
 extends layout
-
+head 
+meta(charset="utf-8")
+meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN", crossorigin="anonymous")
 block content
   h1= title
   p Welcome to #{title}
   p Panyala Rajaiahgari Supriya 
-  button(type="button", class="btn btn-secondary") Press Me
+  button(type="button", class="btn btn-secondary", onclick="goFaster()") Press Me
+  div(id="faster") Increase the speed.
+  script.
+      let mph = 20;
+      let change = 1;
+
+      function goFaster() {
+        mph += change;
+        change++;
+        var fasterDiv = document.getElementById('faster');
+        fasterDiv.textContent = 'MPH ' + mph + ' with change ' + change;
+    }
