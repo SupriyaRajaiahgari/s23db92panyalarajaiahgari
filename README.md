@@ -5,7 +5,7 @@ Render dashboard link - https://dashboard.render.com/web/srv-cl28668p2gis7384hbt
 
 ## Books Class
 
-#### Attributes are Name(string), Color(string) and Price(num)
+#### Attributes are Name(string), Author(string) and Cost(num)
 
 | Name            | Author                        | cost   |
 |-----------------|-------------------------------|--------|
