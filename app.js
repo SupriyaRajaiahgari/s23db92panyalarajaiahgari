@@ -4,30 +4,58 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var booksRouter = require('./routes/books');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var books=require('./models/books');
+var resourceRouter=require('./routes/resource');
 
+async function recreateDB(){
+  // Delete everything
+  await books.deleteMany();
+  let instance1=new books({ style: 'Fedora', color: 'Black', price: 50 });
+  let instance2= new books({ style: 'Beanie', color: 'Red', price: 20 });
+  let instance3=new books({ style: 'Top Hat', color: 'Purple', price: 80 });
+
+  instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  instance2.save().then(doc=>{
+    console.log("Second object saved")}
+    ).catch(err=>{
+    console.error(err)
+    });
+  instance3.save().then(doc=>{
+    console.log("Third object saved")}
+    ).catch(err=>{
+    console.error(err)
+    });
+  }
+  let reseed = true;
+  if (reseed) {recreateDB();
+  }
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-require('dotenv').config();
-const connectionString = 
-process.env.MONGO_CON
-mongoose = require('mongoose');
-mongoose.connect(connectionString);
-//Get the default connection
-var db = mongoose.connection;
-//Bind connection to error event
-db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
-db.once("open", function(){
-console.log("Connection to DB succeeded")});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -37,11 +65,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/books', booksRouter);
-app.use('/board', boardRouter);
-app.use('/choose', chooseRouter);
-
-
+app.use('/books',booksRouter)
+app.use('/board',boardRouter)
+app.use('/choose',chooseRouter)
+app.use('/resource',resourceRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
