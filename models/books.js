@@ -1,8 +1,8 @@
-const { Double } = require("mongodb")
+//const { Double } = require("mongodb")
 const mongoose = require("mongoose")
-const hatsSchema = mongoose.Schema({
-style: String,
-color: String,
-price:Number,
+const booksSchema = mongoose.Schema({
+books_name: String,
+books_author: String,
+books_cost:Number,
 })
-module.exports = mongoose.model("hats",hatsSchema)
+module.exports = mongoose.model("books",booksSchema)

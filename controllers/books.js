@@ -15,9 +15,9 @@ let document = new books();
 // Even though bodies can be in many different formats, we will be picky
 // and require that it be a json object
 // {"books_type":"goat", "cost":12, "size":"large"}
-document.style = req.body.style;
-document.color = req.body.color;
-document.price = req.body.price;
+document.books_name = req.body.books_name;
+document.books_author = req.body.books_author;
+document.books_cost = req.body.books_cost;
 try{
     let result = await document.save();
     res.send(result);

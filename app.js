@@ -27,9 +27,9 @@ var resourceRouter=require('./routes/resource');
 async function recreateDB(){
   // Delete everything
   await books.deleteMany();
-  let instance1=new books({ style: 'Fedora', color: 'Black', price: 50 });
-  let instance2= new books({ style: 'Beanie', color: 'Red', price: 20 });
-  let instance3=new books({ style: 'Top Hat', color: 'Purple', price: 80 });
+  let instance1=new books({ books_name: 'Spare', books_author: 'J.R.Moehringer', books_cost: 100 });
+  let instance2= new books({  books_name: 'Human Anatomy', books_author: 'Dr.Ashvini Kumar Dwivedi', books_cost: 200 });
+  let instance3=new books({  books_name: 'Nijaan Sakshi', books_author: 'Professor K.K.Abdul Gaffars', books_cost: 250  });
 
   instance1.save().then(doc=>{
   console.log("First object saved")}
