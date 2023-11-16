@@ -1,0 +1,60 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let booksid = toShow._id
+    - let books_name = toShow.books_name
+    - let books_author = toShow.books_author
+    - let books_cost = toShow.books_cost
+    - let actionid = "/resource/books/" + booksid
+    script.
+      let actionid = "#{actionid}"
+    
+    div
+      div.row
+        div(class='booksAttr mr-3') books ID is:
+          div #{booksid}
+      
+      div.row
+        div(class='booksAttr mr-3') books name is:
+          div #{books_name}
+      
+      div.row
+        div(class='booksAttr mr-3') books author is:
+          div #{books_author}
+      
+      div.row
+        div(class='booksAttr mr-3') books Cost is:
+          div #{books_cost}
+      
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the books collection
+        window.location.href='/books'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete");
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        })
+        .then((resp) => resp.json())
+        .then((body) => {
+          alert("Delete succeeded");
+          window.location.href='/books';
+          // TODO handle body
+        })
+        .catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error);
+        });
+      }
