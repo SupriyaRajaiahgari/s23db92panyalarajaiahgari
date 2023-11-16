@@ -2,6 +2,8 @@ extends layout
 
 block content
   h1= title
+  if (toShow == null)
+    h2 No instance to Update
 
   - let booksid = toShow._id
   - let books_name = toShow.books_name

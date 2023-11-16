@@ -4,30 +4,29 @@ block content
   h1= title
   form(id='booksForm', action="/resource/books", method="POST")
     div.form-group
-      label(for='books_name') Books Name
-      input#books_name(type='text', name='books_name')
+      label.booksAttr(for='books_name') Books Name
+      input#style(type='text', name='books_name' ,class="booksAttrInput")
     div.form-group
-      label(for='books_author') Books Author
-      input#books_author(type='text', name='books_author')
+      label.booksAttr(for='books_Author') Books Author
+      input#color(type='text', name='books_author', class="booksAttrInput")
     div.form-group
-      label(for='books_cost') Books Cost
-      input#books_cost(type='number', name='books_cost')
-    input(type="submit", value="Submit")
+      label.booksAttr(for='books_cost') Books Cost
+      input#price(type='number', name='books_cost', class="booksAttrInput")
+    input(type="submit", class="booksAttrSubmit")
   script.
     document.forms['booksForm'].addEventListener('submit', (event) => {
       event.preventDefault();
-      // TODO: Add user feedback for form submission (e.g., disable the submit button, show loading spinner)
+      // TODO do something here to show the user that the form is being submitted
       fetch(event.target.action, {
         method: 'POST',
-        body: new URLSearchParams(new FormData(event.target))
-      })
-      .then((resp) => resp.json())
-      .then((body) => {
-        // TODO: Handle the server response (e.g., redirect, display success message)
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
         alert("Save succeeded");
-      })
-      .catch((error) => {
-        // TODO: Handle the error (e.g., display error message, log to console)
-        alert("Save failed: " + error);
+        // TODO handle the response body
+      }).catch((error) => {
+        // TODO handle the error
+        alert("Save failed " + error);
       });
     });
