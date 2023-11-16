@@ -2,27 +2,32 @@ extends layout
 
 block content
   h1= title
+
   if (toShow == null)
     h2 No instance to detail
+  else
+    - let booksid = toShow._id
+    - let books_name = toShow.books_name
+    - let books_author = toShow.books_author
+    - let books_cost = toShow.books_cost
 
-  - let booksid = toShow._id
-  - let books_name = toShow.books_name
-  - let books_author = toShow.books_author
-  - let books_cost = toShow.books_cost
+    div.container
+      div.row.mb-3
+        div.col-12
+          h5.booksAttr Books ID is:
+          p #{booksid}
 
-  div
-    div.row
-      div(class='booksAttr mr-3') books ID is:
-      div #{booksid}
+      div.row.mb-3
+        div.col-12
+          h5.booksAttr Books Name is:
+          p #{books_name}
 
-    div.row
-      div(class='booksAttr mr-3') books name is:
-      div #{books_name}
+      div.row.mb-3
+        div.col-12
+          h5.booksAttr Books Author is:
+          p #{books_author}
 
-    div.row
-      div(class='booksAttr mr-3') books author is:
-      div #{books_author}
-
-    div.row
-      div(class='booksAttr mr-3') books cost is:
-      div #{books_cost}
+      div.row.mb-3
+        div.col-12
+          h5.booksAttr Books Cost is:
+          p #{books_cost}
