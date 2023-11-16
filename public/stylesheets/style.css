@@ -30,3 +30,10 @@ a {
     cursor: pointer;
   }
   
+  .row-margin {
+    margin-bottom: 2rem;
+  }
+
+  .label-margin {
+    margin-right: 1rem;
+  }
