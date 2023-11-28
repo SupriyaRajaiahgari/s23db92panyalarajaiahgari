@@ -7,9 +7,9 @@ block content
     h2 No instance to Update
   else
     - let booksid = toShow._id
-    - let books_name = toShow.books_name
-    - let books_author = toShow.books_author
-    - let books_cost = toShow.books_cost
+    - let booksname = toShow.books_name
+    - let booksauthor = toShow.books_author
+    - let bookscost = toShow.books_cost
 
     div.container
       div.row.mb-2
@@ -21,17 +21,17 @@ block content
         div.form-group.row
           label.col-sm-2.col-form-label(for='books_name') Books Name
           div.col-sm-10
-            input#books_name.form-control(type='text', name='books_name', value=books_name)
+            input#books_name.form-control(type='text', name='books_name', value=booksname)
 
         div.form-group.row
           label.col-sm-2.col-form-label(for='books_author') Books Author
           div.col-sm-10
-            input#books_author.form-control(type='text', name='books_author', value=books_author)
+            input#books_author.form-control(type='text', name='books_author', value=booksauthor)
 
         div.form-group.row
           label.col-sm-2.col-form-label(for='books_cost') Books Cost
           div.col-sm-10
-            input#books_cost.form-control(type='number', name='books_cost', value=books_cost)
+            input#books_cost.form-control(type='number', name='books_cost', value=bookscost)
 
         div.form-group.row
           div.col-sm-10.offset-sm-2

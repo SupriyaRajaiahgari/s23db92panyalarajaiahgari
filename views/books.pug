@@ -4,14 +4,20 @@ block content
   h1= title
  
   - let books = [{books_name: "Spare",books_author: "J. R. Moehringer", books_cost: 100},{books_name: "Human Anatomy",books_author: "Dr. Ashvini Kumar Dwivedi", books_cost: 200},{books_name: "Njaan Sakshi",books_author: "Professor K.K. Abdul Gaffar's",books_cost: 250 }]
+  - let create = `dispatch("/books/create")`
+  button.btn(class="btn-info", onclick=create) Add new book
   div(class= "container-fluid")
     div(class = "row")
       each item in books
         - let destination = `dispatch("/books/update?id=${item._id}")`
+        - let deletes = `dispatch("/books/delete?id=${item._id}")`
+        - let detail = `dispatch("/books/detail?id=${item._id}")`
           div(class= "col-sm-2") Name: #{item.books_name}
           div(class= "col-sm-2") Author: #{item.books_author}
           div(class= "col-sm-2") Cost: #{item.books_cost}
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= deletes) Delete
+          button.btn( class="btn-primary ml-1", onclick= detail) Detail
     script.
       function dispatch(path){
         window.location.href=path
